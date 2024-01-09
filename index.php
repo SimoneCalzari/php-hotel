@@ -76,7 +76,7 @@ $hotels = [
 
         <form action="index.php" method="GET">
           <div class="row">
-            <div class="col-3">
+            <div class="col-2">
               <!-- FILTRO PARCHEGGIO -->
               <label for="parking" class="mb-1">Disponibilità parcheggio:</label>
               <select class="form-select mb-3" id="parking" name="parking">
@@ -86,7 +86,7 @@ $hotels = [
               </select>
               <!-- /FILTRO PARCHEGGIO -->
             </div>
-            <div class="col-3">
+            <div class="col-2">
               <!-- FILTRO STELLE -->
               <label for="vote" class="mb-1">Numero di stelle minimo:</label>
               <select class="form-select mb-3" id="vote" name="vote">
@@ -124,7 +124,7 @@ $hotels = [
           <tbody class="table-light table-group-divider">
             <?php
             foreach ($hotels as $index => $hotel) {
-              // condizioni filtro parcheggio
+              // condizioni filtro parcheggio e stelle
               if (($parcheggio_si_no === '1' || $parcheggio_si_no === $hotel['parking'] || $parcheggio_si_no === $hotel['parking']) && $numero_stelle <= $hotel['vote']) {
 
                 // apro tag riga
