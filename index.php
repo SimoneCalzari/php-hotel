@@ -1,6 +1,10 @@
 <?php
-// variabile per filtro parcheggio
+// variabile per filtro parcheggio con caso di default al primo caricamento
 $parcheggio_si_no = $_GET['parking'] ?? '1';
+// elaborazione dato sul parcheggio per averlo come booleano
+if ($parcheggio_si_no !== '1') {
+  $parcheggio_si_no = ($parcheggio_si_no === '2') ? true : false;
+}
 
 $hotels = [
 
@@ -99,7 +103,7 @@ $hotels = [
             <?php
             foreach ($hotels as $index => $hotel) {
               // condizioni filtro parcheggio
-              if ($parcheggio_si_no === '1' || ($parcheggio_si_no === '2' && $hotel['parking'] === true) || ($parcheggio_si_no === '3' && $hotel['parking'] === false)) {
+              if ($parcheggio_si_no === '1' || $parcheggio_si_no === $hotel['parking'] || $parcheggio_si_no === $hotel['parking']) {
 
                 // apro tag riga
                 $table_row = '<tr>';
