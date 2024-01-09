@@ -63,11 +63,20 @@ $hotels = [
     foreach ($hotel as $key => $value) {
 
       // mostriamo yes or no per il caso chiave parking al posto di 1 o vuoto per true false
-      if ($key !== 'parking') {
-        echo "$key: $value";
-      } else {
-        $parking_str = $value === true ? 'Yes' : 'No';
+      // primo modo
+      // if ($key== 'parking') {
+      //   echo "$key: $value";
+      // } else {
+      //   $parking_str = $value === true ? 'Yes' : 'No';
+      //   echo "$key: $parking_str";
+      // }
+
+      // secondo modo più generico
+      if (is_bool($value)) {
+        $parking_str = $value ? 'Yes' : 'No';
         echo "$key: $parking_str";
+      } else {
+        echo "$key: $value";
       }
 
       echo "<br>";
