@@ -5,6 +5,8 @@ $parcheggio_si_no = $_GET['parking'] ?? '1';
 if ($parcheggio_si_no !== '1') {
   $parcheggio_si_no = ($parcheggio_si_no === '2') ? true : false;
 }
+// variabile per filtro numero di stelle con caso di default al primo caricamento
+$numero_stelle = intval($_GET['vote'] ?? 1);
 
 $hotels = [
 
@@ -71,13 +73,33 @@ $hotels = [
     <!-- FORM FILTRI-->
     <section class="mb-4">
       <div class="container-fluid">
+
         <form action="index.php" method="GET">
-          <label for="parking" class="mb-1">Disponibilità parcheggio:</label>
-          <select class="form-select mb-3" id="parking" name="parking">
-            <option value="1">Indifferente</option>
-            <option value="2">Si</option>
-            <option value="3">No</option>
-          </select>
+          <div class="row">
+            <div class="col-3">
+              <!-- FILTRO PARCHEGGIO -->
+              <label for="parking" class="mb-1">Disponibilità parcheggio:</label>
+              <select class="form-select mb-3" id="parking" name="parking">
+                <option value="1">Indifferente</option>
+                <option value="2">Si</option>
+                <option value="3">No</option>
+              </select>
+              <!-- /FILTRO PARCHEGGIO -->
+            </div>
+            <div class="col-3">
+              <!-- FILTRO STELLE -->
+              <label for="vote" class="mb-1">Numero di stelle minimo:</label>
+              <select class="form-select mb-3" id="vote" name="vote">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+              <!-- /FILTRO STELLE -->
+
+            </div>
+          </div>
           <button class="btn btn-primary">Filtra</button>
         </form>
       </div>
@@ -93,7 +115,7 @@ $hotels = [
               <th scope="col" class="col-3">Nome</th>
               <th scope="col" class="col-3">Descrizione</th>
               <th scope="col" class="col-2">Parcheggio</th>
-              <th scope="col" class="col-2">Voto</th>
+              <th scope="col" class="col-2"> N° Stelle</th>
               <th scope="col" class="col-2">Distanza dal centro</th>
             </tr>
           </thead>
@@ -103,7 +125,7 @@ $hotels = [
             <?php
             foreach ($hotels as $index => $hotel) {
               // condizioni filtro parcheggio
-              if ($parcheggio_si_no === '1' || $parcheggio_si_no === $hotel['parking'] || $parcheggio_si_no === $hotel['parking']) {
+              if (($parcheggio_si_no === '1' || $parcheggio_si_no === $hotel['parking'] || $parcheggio_si_no === $hotel['parking']) && $numero_stelle <= $hotel['vote']) {
 
                 // apro tag riga
                 $table_row = '<tr>';
