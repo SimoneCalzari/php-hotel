@@ -55,39 +55,42 @@ $hotels = [
 
 
 <body>
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Nome</th>
-        <th scope="col">Descrizione</th>
-        <th scope="col">Parcheggio</th>
-        <th scope="col">Voto</th>
-        <th scope="col">Distanza dal centro</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php
-      foreach ($hotels as $index => $hotel) {
-        // apro tag riga
-        $table_row = '<tr>';
-        foreach ($hotel as $key => $value) {
-          // concatento i vari tag td
-          //condizioni per mostrare yes or no nei valori booleani
-          if (is_bool($value)) {
-            $parking_str = $value ? 'Si' : 'No';
-            $table_row .= "<td>$parking_str</td>";
-          } else {
-            $table_row .= "<td>$value</td>";
+  <div class="container-fluid">
+    <table class="table table-hover ">
+      <thead class="table-info">
+        <tr>
+          <th scope="col" class="col-3">Nome</th>
+          <th scope="col" class="col-3">Descrizione</th>
+          <th scope="col" class="col-2">Parcheggio</th>
+          <th scope="col" class="col-2">Voto</th>
+          <th scope="col" class="col-2">Distanza dal centro</th>
+        </tr>
+      </thead>
+      <tbody class="table-light table-group-divider">
+        <?php
+        foreach ($hotels as $index => $hotel) {
+          // apro tag riga
+          $table_row = '<tr>';
+          foreach ($hotel as $key => $value) {
+            // concatento i vari tag td
+            //condizioni per mostrare yes or no nei valori booleani
+            if (is_bool($value)) {
+              $parking_str = $value ? 'Si' : 'No';
+              $table_row .= "<td>$parking_str</td>";
+            } else {
+              $table_row .= "<td>$value</td>";
+            }
           }
+          // chiudo tag td
+          $table_row .= '</tr>';
+          // mando nell html la riga creata
+          echo $table_row;
         }
-        // chiudo tag td
-        $table_row .= '</tr>';
-        // mando nell html la riga creata
-        echo $table_row;
-      }
-      ?>
-    </tbody>
-  </table>
+        ?>
+      </tbody>
+    </table>
+
+  </div>
 </body>
 
 </html>
