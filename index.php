@@ -7,6 +7,9 @@ if ($parcheggio_si_no !== '1') {
 }
 // variabile per filtro numero di stelle con caso di default al primo caricamento
 $numero_stelle = intval($_GET['vote'] ?? 1);
+// variabile che mi dice se ho trovato degli hotel con i filtri, inizialmente settata a false
+$hotel_trovati = false;
+
 
 $hotels = [
 
@@ -73,7 +76,6 @@ $hotels = [
     <!-- FORM FILTRI-->
     <section class="mb-4">
       <div class="container-fluid">
-
         <form action="index.php" method="GET">
           <div class="row">
             <div class="col-2">
@@ -97,7 +99,6 @@ $hotels = [
                 <option value="5">5</option>
               </select>
               <!-- /FILTRO STELLE -->
-
             </div>
           </div>
           <button class="btn btn-primary">Filtra</button>
@@ -126,7 +127,8 @@ $hotels = [
             foreach ($hotels as $index => $hotel) {
               // condizioni filtro parcheggio e stelle
               if (($parcheggio_si_no === '1' || $parcheggio_si_no === $hotel['parking'] || $parcheggio_si_no === $hotel['parking']) && $numero_stelle <= $hotel['vote']) {
-
+                // imposto la variabile che mi dice se ho trovato hotel a true
+                $hotel_trovati = true;
                 // apro tag riga
                 $table_row = '<tr>';
                 foreach ($hotel as $key => $value) {
@@ -149,6 +151,12 @@ $hotels = [
           </tbody>
           <!-- /BODY TABELLA -->
         </table>
+        <?php
+        // inserisco un messaggio nella tabella nel caso la ricerca con filtri non produca risultati
+        if (!$hotel_trovati) {
+          echo '<p>La ricerca non ha prodotto risultati</p>';
+        }
+        ?>
       </div>
     </section>
     <!-- /TABELLA HOTELS -->
