@@ -49,42 +49,45 @@ $hotels = [
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PHP HOTEL</title>
+  <!-- BOOSTRAP -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
 </head>
 
 
 <body>
-  <?php
-
-  foreach ($hotels as $index => $hotel) {
-    // variabile per indicare numero hotel partendo da 1
-    $numero_hotel = ++$index;
-    echo "Hotel N° $numero_hotel";
-    echo "<br>";
-    foreach ($hotel as $key => $value) {
-
-      // mostriamo yes or no per il caso chiave parking al posto di 1 o vuoto per true false
-      // primo modo
-      // if ($key== 'parking') {
-      //   echo "$key: $value";
-      // } else {
-      //   $parking_str = $value === true ? 'Yes' : 'No';
-      //   echo "$key: $parking_str";
-      // }
-
-      // secondo modo più generico
-      if (is_bool($value)) {
-        $parking_str = $value ? 'Yes' : 'No';
-        echo "$key: $parking_str";
-      } else {
-        echo "$key: $value";
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Descrizione</th>
+        <th scope="col">Parcheggio</th>
+        <th scope="col">Voto</th>
+        <th scope="col">Distanza dal centro</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+      foreach ($hotels as $index => $hotel) {
+        // apro tag riga
+        $table_row = '<tr>';
+        foreach ($hotel as $key => $value) {
+          // concatento i vari tag td
+          //condizioni per mostrare yes or no nei valori booleani
+          if (is_bool($value)) {
+            $parking_str = $value ? 'Si' : 'No';
+            $table_row .= "<td>$parking_str</td>";
+          } else {
+            $table_row .= "<td>$value</td>";
+          }
+        }
+        // chiudo tag td
+        $table_row .= '</tr>';
+        // mando nell html la riga creata
+        echo $table_row;
       }
-
-      echo "<br>";
-    }
-    echo '<hr>';
-  }
-
-  ?>
+      ?>
+    </tbody>
+  </table>
 </body>
 
 </html>
