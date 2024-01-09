@@ -56,11 +56,20 @@ $hotels = [
   <?php
 
   foreach ($hotels as $index => $hotel) {
+    // variabile per indicare numero hotel partendo da 1
     $numero_hotel = ++$index;
     echo "Hotel N° $numero_hotel";
     echo "<br>";
     foreach ($hotel as $key => $value) {
-      echo "$key: $value";
+
+      // mostriamo yes or no per il caso chiave parking al posto di 1 o vuoto per true false
+      if ($key !== 'parking') {
+        echo "$key: $value";
+      } else {
+        $parking_str = $value === true ? 'Yes' : 'No';
+        echo "$key: $parking_str";
+      }
+
       echo "<br>";
     }
     echo '<hr>';
