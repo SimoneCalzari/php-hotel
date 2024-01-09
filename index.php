@@ -126,7 +126,7 @@ $hotels = [
             <?php
             foreach ($hotels as $index => $hotel) {
               // condizioni filtro parcheggio e stelle
-              if (($parcheggio_si_no === '1' || $parcheggio_si_no === $hotel['parking'] || $parcheggio_si_no === $hotel['parking']) && $numero_stelle <= $hotel['vote']) {
+              if (($parcheggio_si_no === '1' || $parcheggio_si_no === $hotel['parking']) && $hotel['vote'] >= $numero_stelle) {
                 // imposto la variabile che mi dice se ho trovato hotel a true
                 $hotel_trovati = true;
                 // apro tag riga
