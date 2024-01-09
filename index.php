@@ -53,6 +53,20 @@ $hotels = [
 
 
 <body>
+  <?php
+
+  foreach ($hotels as $index => $hotel) {
+    $numero_hotel = ++$index;
+    echo "Hotel N° $numero_hotel";
+    echo "<br>";
+    foreach ($hotel as $key => $value) {
+      echo "$key: $value";
+      echo "<br>";
+    }
+    echo '<hr>';
+  }
+
+  ?>
 </body>
 
 </html>
