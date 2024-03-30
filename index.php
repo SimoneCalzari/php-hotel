@@ -82,9 +82,9 @@ $hotels = [
               <!-- FILTRO PARCHEGGIO -->
               <label for="parking" class="mb-1">Disponibilità parcheggio:</label>
               <select class="form-select mb-3" id="parking" name="parking">
-                <option value="1">Indifferente</option>
-                <option value="2">Si</option>
-                <option value="3">No</option>
+                <option value="1" <?php if ($parcheggio_si_no == '1') : ?> selected <?php endif; ?>>Indifferente</option>
+                <option value="2" <?php if ($parcheggio_si_no === true) : ?> selected <?php endif; ?>>Si</option>
+                <option value="3" <?php if ($parcheggio_si_no === false) : ?> selected <?php endif; ?>>No</option>
               </select>
               <!-- /FILTRO PARCHEGGIO -->
             </div>
@@ -92,11 +92,11 @@ $hotels = [
               <!-- FILTRO STELLE -->
               <label for="vote" class="mb-1">Numero di stelle minimo:</label>
               <select class="form-select mb-3" id="vote" name="vote">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                <option value="1" <?php if ($numero_stelle == '1') : ?> selected <?php endif; ?>>1</option>
+                <option value="2" <?php if ($numero_stelle == '2') : ?> selected <?php endif; ?>>2</option>
+                <option value="3" <?php if ($numero_stelle == '3') : ?> selected <?php endif; ?>>3</option>
+                <option value="4" <?php if ($numero_stelle == '4') : ?> selected <?php endif; ?>>4</option>
+                <option value="5" <?php if ($numero_stelle == '5') : ?> selected <?php endif; ?>>5</option>
               </select>
               <!-- /FILTRO STELLE -->
             </div>
