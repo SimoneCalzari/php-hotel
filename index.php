@@ -1,12 +1,21 @@
 <?php
+
 // variabile per filtro parcheggio con caso di default al primo caricamento
 $parcheggio_si_no = $_GET['parking'] ?? '1';
+// variabile per filtro numero di stelle con caso di default al primo caricamento
+$numero_stelle = intval($_GET['vote'] ?? 1);
+
+// caso reset filtri 
+if (!empty($_GET['filter_reset'])) {
+  $parcheggio_si_no = '1';
+  $numero_stelle = 1;
+}
+
 // elaborazione dato sul parcheggio per averlo come booleano
 if ($parcheggio_si_no !== '1') {
   $parcheggio_si_no = ($parcheggio_si_no === '2') ? true : false;
 }
-// variabile per filtro numero di stelle con caso di default al primo caricamento
-$numero_stelle = intval($_GET['vote'] ?? 1);
+
 // variabile che mi dice se ho trovato degli hotel con i filtri, inizialmente settata a false
 $hotel_trovati = false;
 
@@ -102,6 +111,7 @@ $hotels = [
             </div>
           </div>
           <button class="btn btn-primary">Filtra</button>
+          <button class="btn btn-warning" name="filter_reset" value="reset">Reset</button>
         </form>
       </div>
     </section>
